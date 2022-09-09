@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Rock, Paper, Scissors</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <script>
+        let playerScore = 0;
+        let computerScore = 0;
+        getChoices();
+
+            function getComputerChoice() {
+                const choices = ['rock', 'paper', 'scissors'];
+                let x = Math.floor(Math.random()*3);
+                let choice = choices[x];
+                return choice;
+            }
+
+            function getChoices() {
+                const computerSelection = getComputerChoice();
+                const playerSelection = window.prompt("Write your choice: Rock, paper or scissors?", "").toLowerCase();
+                
+                if (playerSelection === null) {
+                    alert("You didn't make a choice.");
+                } else {
+                    playRound(computerSelection, playerSelection);
+                }
+            }
+
+            function playRound(computerSelection, playerSelection) {
+                if (playerSelection === 'rock') {
+                    if (computerSelection === 'rock') {
+                        alert("It's a tie!");
+                        endRound("tie");
+                    } else if (computerSelection === "scissors") {
+                        alert("You won! Rock beats scissors.");
+                        endRound("win");
+                    } else if (computerSelection === 'paper') {
+                        alert("You lose! Paper beats rock.");
+                        endRound("lose");
+                    } else {
+                        alert("Whoops, something went wrong.");
+                        console.log("computerSelection failed");
+                    }
+                } else if (playerSelection === 'paper') {
+                    if (computerSelection === 'paper') {
+                        alert("It's a tie!");
+                        endRound("tie");
+                    } else if (computerSelection === "rock") {
+                        alert("You won! Paper beats rock.")
+                        endRound("win");
+                    } else if (computerSelection === 'scissors') {
+                        alert("You lose! Scissors beats paper.");
+                        endRound("lose");
+                    } else {
+                        alert("Whoops, something went wrong.");
+                        console.log("computerSelection failed");
+                    }
+                } else if (playerSelection === 'scissors') {
+                    if (computerSelection === 'scissors') {
+                        alert("It's a tie!");
+                        endRound("tie");
+                    } else if (computerSelection === "paper") {
+                        alert("You won! Scissors beats paper.");
+                        endRound("win");
+                    } else if (computerSelection === 'rock') {
+                        alert("You lose! Rock beats scissors.");
+                        endRound("lose");
+                    } else {
+                        alert("Whoops, something went wrong.");
+                        console.log("computerSelection failed");
+                    }
+                } else {
+                    alert("That's not a valid option, pick rock, paper or scissors.");
+                    getChoices;
+                }
+            }
+
+            function endRound(result) {
+                if (result === "win") {
+                    playerScore += 1;
+                    getChoices();
+                } else if (result === "lose") {
+                    computerScore += 1;
+                    getChoices();
+                } else {
+                    getChoices();
+                }
+            }
+        </script>
+    </body>
+</html>
