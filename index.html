@@ -8,6 +8,7 @@
         <script>
             let playerScore = 0;
             let computerScore = 0;
+            game();
 
             function getComputerChoice() {
                 const choices = ['rock', 'paper', 'scissors'];
@@ -22,7 +23,15 @@
                     console.log("AI: " + computerScore);
                     console.log("round: " + i);
                     const computerSelection = getComputerChoice();
-                    const playerSelection = window.prompt("Write your choice: Rock, paper or scissors?", "").toLowerCase();
+                    let playerSelection;
+                    let selection = window.prompt("Write your choice: Rock, paper or scissors?", "");
+                    if (selection !== null) {
+                        playerSelection = selection.toLowerCase();
+                    } else {
+                        alert("Don't quit now!");
+                        game();
+                    }
+
                     playRound(computerSelection, playerSelection);
                 }
 
