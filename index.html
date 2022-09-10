@@ -6,9 +6,8 @@
     </head>
     <body>
         <script>
-        let playerScore = 0;
-        let computerScore = 0;
-        getChoices();
+            let playerScore = 0;
+            let computerScore = 0;
 
             function getComputerChoice() {
                 const choices = ['rock', 'paper', 'scissors'];
@@ -17,14 +16,22 @@
                 return choice;
             }
 
-            function getChoices() {
-                const computerSelection = getComputerChoice();
-                const playerSelection = window.prompt("Write your choice: Rock, paper or scissors?", "").toLowerCase();
-                
-                if (playerSelection === null) {
-                    alert("You didn't make a choice.");
-                } else {
+            function game() {
+                for (let i=0; i<5; i++) {
+                    console.log("player: " + playerScore);
+                    console.log("AI: " + computerScore);
+                    console.log("round: " + i);
+                    const computerSelection = getComputerChoice();
+                    const playerSelection = window.prompt("Write your choice: Rock, paper or scissors?", "").toLowerCase();
                     playRound(computerSelection, playerSelection);
+                }
+
+                if (playerScore > computerScore) {
+                    alert("VICTORY!")
+                } else if (playerScore < computerScore) {
+                    alert("DEFEAT!")
+                } else {
+                    alert("It's a tie!")
                 }
             }
 
@@ -32,13 +39,12 @@
                 if (playerSelection === 'rock') {
                     if (computerSelection === 'rock') {
                         alert("It's a tie!");
-                        endRound("tie");
                     } else if (computerSelection === "scissors") {
                         alert("You won! Rock beats scissors.");
-                        endRound("win");
+                        playerScore += 1;
                     } else if (computerSelection === 'paper') {
                         alert("You lose! Paper beats rock.");
-                        endRound("lose");
+                        computerScore += 1;
                     } else {
                         alert("Whoops, something went wrong.");
                         console.log("computerSelection failed");
@@ -46,13 +52,12 @@
                 } else if (playerSelection === 'paper') {
                     if (computerSelection === 'paper') {
                         alert("It's a tie!");
-                        endRound("tie");
                     } else if (computerSelection === "rock") {
                         alert("You won! Paper beats rock.")
-                        endRound("win");
+                        playerScore += 1;
                     } else if (computerSelection === 'scissors') {
                         alert("You lose! Scissors beats paper.");
-                        endRound("lose");
+                        computerScore += 1;
                     } else {
                         alert("Whoops, something went wrong.");
                         console.log("computerSelection failed");
@@ -60,32 +65,18 @@
                 } else if (playerSelection === 'scissors') {
                     if (computerSelection === 'scissors') {
                         alert("It's a tie!");
-                        endRound("tie");
                     } else if (computerSelection === "paper") {
                         alert("You won! Scissors beats paper.");
-                        endRound("win");
+                        playerScore += 1;
                     } else if (computerSelection === 'rock') {
                         alert("You lose! Rock beats scissors.");
-                        endRound("lose");
+                        computerScore += 1;
                     } else {
                         alert("Whoops, something went wrong.");
                         console.log("computerSelection failed");
                     }
                 } else {
                     alert("That's not a valid option, pick rock, paper or scissors.");
-                    getChoices;
-                }
-            }
-
-            function endRound(result) {
-                if (result === "win") {
-                    playerScore += 1;
-                    getChoices();
-                } else if (result === "lose") {
-                    computerScore += 1;
-                    getChoices();
-                } else {
-                    getChoices();
                 }
             }
         </script>
