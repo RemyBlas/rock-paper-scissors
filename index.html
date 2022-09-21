@@ -3,91 +3,12 @@
     <head>
         <title>Rock, Paper, Scissors</title>
         <meta charset="UTF-8">
+        <script src="script.js" defer></script>
     </head>
     <body>
-        <script>
-            let playerScore = 0;
-            let computerScore = 0;
-            game();
-
-            function getComputerChoice() {
-                const choices = ['rock', 'paper', 'scissors'];
-                let x = Math.floor(Math.random()*3);
-                let choice = choices[x];
-                return choice;
-            }
-
-            function game() {
-                for (let i=0; i<5; i++) {
-                    console.log("player: " + playerScore);
-                    console.log("AI: " + computerScore);
-                    console.log("round: " + i);
-                    const computerSelection = getComputerChoice();
-                    let playerSelection;
-                    let selection = window.prompt("Write your choice: Rock, paper or scissors?", "");
-                    if (selection !== null) {
-                        playerSelection = selection.toLowerCase();
-                    } else {
-                        alert("Don't quit now!");
-                        game();
-                    }
-
-                    playRound(computerSelection, playerSelection);
-                }
-
-                if (playerScore > computerScore) {
-                    alert("VICTORY!")
-                } else if (playerScore < computerScore) {
-                    alert("DEFEAT!")
-                } else {
-                    alert("It's a tie!")
-                }
-            }
-
-            function playRound(computerSelection, playerSelection) {
-                if (playerSelection === 'rock') {
-                    if (computerSelection === 'rock') {
-                        alert("It's a tie!");
-                    } else if (computerSelection === "scissors") {
-                        alert("You won! Rock beats scissors.");
-                        playerScore += 1;
-                    } else if (computerSelection === 'paper') {
-                        alert("You lose! Paper beats rock.");
-                        computerScore += 1;
-                    } else {
-                        alert("Whoops, something went wrong.");
-                        console.log("computerSelection failed");
-                    }
-                } else if (playerSelection === 'paper') {
-                    if (computerSelection === 'paper') {
-                        alert("It's a tie!");
-                    } else if (computerSelection === "rock") {
-                        alert("You won! Paper beats rock.")
-                        playerScore += 1;
-                    } else if (computerSelection === 'scissors') {
-                        alert("You lose! Scissors beats paper.");
-                        computerScore += 1;
-                    } else {
-                        alert("Whoops, something went wrong.");
-                        console.log("computerSelection failed");
-                    }
-                } else if (playerSelection === 'scissors') {
-                    if (computerSelection === 'scissors') {
-                        alert("It's a tie!");
-                    } else if (computerSelection === "paper") {
-                        alert("You won! Scissors beats paper.");
-                        playerScore += 1;
-                    } else if (computerSelection === 'rock') {
-                        alert("You lose! Rock beats scissors.");
-                        computerScore += 1;
-                    } else {
-                        alert("Whoops, something went wrong.");
-                        console.log("computerSelection failed");
-                    }
-                } else {
-                    alert("That's not a valid option, pick rock, paper or scissors.");
-                }
-            }
-        </script>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+        <div id="container"></div>
     </body>
 </html>
